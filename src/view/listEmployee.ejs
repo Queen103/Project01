@@ -1,0 +1,68 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Employee</title>
+    <link rel="stylesheet" href="../public/style/style.css">
+</head>
+
+<body>
+    <div class="w3-container">
+        <h2>List users Table</h2>
+        <table lass="w3-table-all w3-hoverable">
+            <thead>
+                <tr class="w3-light-grey">
+                    <th>ID</th>
+                    <th>Fullname</th>
+                    <th>Birthday</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% for(let i=0; i < dataE.length; i++) { %>
+                    <tr>
+                        <td>
+                            <%= dataE[i].EmpID %>
+                        </td>
+                        <td>
+                            <%= dataE[i].Fullname %>
+                        </td>
+                        <td>
+                            <%= dataE[i].Birthday %>
+                        </td>
+                        <td>
+                            <%= dataE[i].Phone %>
+                        </td>
+                        <td>
+                            <%= dataE[i].Address %>
+                        </td>
+                        <td>
+
+                            <form action="/user/employee/<%= dataE[i].EmpID %>" method="GET">
+                                <button type="submit">Detail</button>
+                            </form>
+                            <% if (dataE[i].Block == 0){ %>
+                                <form action="/block/<%= dataE[i].EmpID %>" method="GET">
+                                    <button type="submit">Block</button>
+                                </form>
+                                <% }else{ %>
+                                    <form action="/unblock/<%= dataE[i].EmpID %>" method="GET">
+                                        <button type="submit">UnBlock</button>
+                                    </form>
+                                    <% } %>
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+
+
+        </table>
+        <a href="/createEmployee">Create new </a>
+    </div>
+</body>
+
+</html>
