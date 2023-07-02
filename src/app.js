@@ -3,6 +3,7 @@ import configViewEngine from './config/viewEngine'
 import initManagerRoute from './route/manager';
 import initEmployeeRoute from './route/employee';
 import initLoginRoute from './route/login';
+import initEmailRoute from './route/email';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
@@ -34,6 +35,7 @@ console.log('.....check');
 //init web route
 initManagerRoute(app);
 initEmployeeRoute(app);
+initEmailRoute(app);
 configViewEngine(app);
 
 // app.use(cors);
