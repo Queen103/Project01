@@ -20,8 +20,8 @@ let sendGmail = async(req, res) => {
                 pass: process.env.PASS_GMAIL
             }
         });
-        //set cookie
-        const EmpID = jwt.sign(data[0].EmpID, process.env.SECRET);
+        //set jwt
+        const EmpID = jwt.sign(data[0].EmpID, process.env.SECRET, { expiresIn: '1h' });
 
         const info = await transporter.sendMail({
             from: '"QUANH NÈ " <quanhne103@gmail.com>', // sender address
