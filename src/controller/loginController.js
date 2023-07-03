@@ -42,14 +42,14 @@ let createAccount = async(req, res) => {
             let { account, password, name, birth, gender, mail, phone, address } = req.body;
             console.log(account);
             const [data1] = await pool.execute('select * from `account` where Account = ?', [account]);
-            console.log(data1);
             if (data1[0]) {
                 return res.json('Account exit');
             }
             const data = await pool.execute('insert into Account(Account,Password,Block,Role) values (?,?,0,0)', [account, password]);
             const [data2] = await pool.execute('select max(EmpID) as maxE from Account');
+            console.log(req.body);
             const [data3] = await pool.execute('insert into Employee(Fullname,Birthday,Gender,Email,Phone,Address,EmpID) values (?,?,?,?,?,?,?)', [name, birth, gender, mail, phone, address, data2[0].maxE]);
-            return res.json('taoj thanh cong');
+            return res.json('tao thanh cong');
         } catch (error) {
             console.error('Error:', error);
             return res.status(500).send('Server error');
